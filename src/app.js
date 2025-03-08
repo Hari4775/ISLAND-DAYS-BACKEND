@@ -1,15 +1,12 @@
-const express = require("express")
+const express = require("express");
 const cookieparser= require("cookie-parser");
-
 const app= express()
 const connectDB = require("../config/connectDB");
 const userRoutes= require("../routers/userRoutes/index")
 const adminAuthRoutes =require("../routers/adminRoutes");
-
 const cors =require("cors");
 const env = require("dotenv");
 const port = process.env.PORT;
-const allowedOrigins = ["https://islandays.onrender.com/*","https://islandays.onrender.com/admin*"]
 
 env.config();
 app.use(cookieparser());

@@ -13,26 +13,23 @@ const app = express();
 const port = process.env.PORT || 8000;
 
 // ✅ LOG ORIGIN TO DEBUG CORS ISSUES
-const allowedOrigins = ["https://admin.islanddays.in", "https://islanddays.in"];
+// const allowedOrigins = ["https://admin.islanddays.in", "https://islanddays.in"];
 
-const corsOptions = {
-  origin: function (origin, callback) {
-    console.log("Incoming request from origin:", origin); // ✅ Debugging
-    if (!origin || allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      callback(new Error("Not allowed by CORS"));
-    }
-  },
-  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-  credentials: true, // ✅ Required if sending cookies
-  allowedHeaders: ["Content-Type", "Authorization"],
-};
+// const corsOptions = {
+//   origin: function (origin, callback) {
+//     console.log("Incoming request from origin:", origin); // ✅ Debugging
+//     if (!origin || allowedOrigins.includes(origin)) {
+//       callback(null, true);
+//     } else {
+//       callback(new Error("Not allowed by CORS"));
+//     }
+//   },
+//   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+//   credentials: true, // ✅ Required if sending cookies
+//   allowedHeaders: ["Content-Type", "Authorization"],
+// };
 
-app.use(cors(corsOptions));
-
-// ✅ Handle Preflight (OPTIONS) Requests
-app.options("*", cors(corsOptions));
+app.use(cors());
 
 // ✅ Middleware
 app.use(cookieParser());

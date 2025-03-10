@@ -29,3 +29,16 @@
 : name changing the process 
 manager
 - pm2 status : get  the pm2 details (names online)
+
+# nginx proxipas ( for setting backend api - islanddays.in/api)
+-    server_name 13.49.240.152;
+
+        location /api/ {
+
+        proxy_pass http://localhost:8000/;
+        proxy_pass_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection 'upgrade';
+        proxy_set_header Host $host;
+        proxy_cache_bypass $http_upgrade;
+

@@ -2,7 +2,7 @@
 # DEPLOYMENT
 - signup aws 
 - launch instance 
-- ssh -i "BACKEND-ISLANDDAYS.pem"
+- chmod 400 "BACKEND-TOURISM.pem"
 - ssh -i "BACKEND-ISLANDDAYS.pem" ubuntu@ec2-13-60-180-199.eu-north-1.compute.amazonaws.com 
 - git clone https://
 - Run this command to install NVM: curl -fsSL https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.4/install.sh | bash
@@ -30,15 +30,5 @@
 manager
 - pm2 status : get  the pm2 details (names online)
 
-# nginx proxipas ( for setting backend api - islanddays.in/api)
--    server_name 13.49.240.152;
 
-        location /api/ {
-
-        proxy_pass http://localhost:8000/;
-        proxy_pass_version 1.1;
-        proxy_set_header Upgrade $http_upgrade;
-        proxy_set_header Connection 'upgrade';
-        proxy_set_header Host $host;
-        proxy_cache_bypass $http_upgrade;
 

@@ -4,16 +4,24 @@ const nodemailer = require('nodemailer');
 const otpStorage = {};
 
 
-const generateOtp = () => Math.floor(100000 + Math.random() * 900000).toString();
+const generateOtp = () => Math.floor(100000 + Math.random() * 900000);
 
 const storeOtp = (email, otp) => {
-  otpStorage[email] = otp;
+  otpStorage[email] = { otp, expiresAt: Date.now() + 5 * 60 * 1000 };
   console.log(otpStorage,"store otp storage")
 };
 
 
+
 const verifyStoredOtp = (email, otp) => {
-  return otpStorage[email] === otp;
+  console.log(otp,email,"otp")
+  if (!otpStorage[email]) return false;
+  const { otp: storedOtp, expiresAt } = otpStorage[email];
+  if (Date.now() > expiresAt) {
+      delete otpStorage[email]; // Remove expired OTP
+      return false;
+  }
+  return storedOtp === otp;
 };
 
 

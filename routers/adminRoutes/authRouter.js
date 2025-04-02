@@ -5,11 +5,5 @@ const adminAuth = require("../../middleware/Auth/adminAuthMiddleware");
 
 authRouter.post("/request_otp",requestOtp);
 authRouter.post("/verify_otp",verifyOtp)
-authRouter.post('/register',register);
-authRouter.post('/login',login);
 authRouter.post("/logout",logout);   
-authRouter.post("/forgot_password",adminAuth, forgotPassword);
-authRouter.post("/reset_password",adminAuth, resetPassword);
-authRouter.post("/change_password",adminAuth, changePassword);
-
 module.exports = authRouter;

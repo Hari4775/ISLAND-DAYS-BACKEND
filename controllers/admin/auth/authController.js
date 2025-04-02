@@ -2,8 +2,6 @@
 const jwt = require('jsonwebtoken');
 const whiteList = require("../../../config/whiteList");
 const { generateOtp, sendOtp, storeOtp, verifyStoredOtp } = require('../../../utils/otpUtils');
-const Admin = require('../../../model/admin/admin');
-const bcrypt = require("bcrypt");
 const jwtSecret = process.env.adminjwtKEY;
 
 const isWhitelisted = ( email)=>{
@@ -88,13 +86,6 @@ const logout = async(req,res)=>{
 
     }
 }
-
-
-
-
-
-
-
 
 
 

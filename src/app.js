@@ -13,8 +13,8 @@ const app = express();
 const port = process.env.PORT || 3000;
 
 const allowedOrigins = [
-  "https://islanddays.in/", // Replace with actual User UI domain
-  "https://admin.islanddays.in/", // Replace with actual Admin UI domain
+  "https://islanddays.in", // Replace with actual User UI domain
+  "https://admin.islanddays.in", // Replace with actual Admin UI domain
 ];
 
 app.use(cors({

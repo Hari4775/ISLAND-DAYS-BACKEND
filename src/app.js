@@ -14,7 +14,8 @@ const port = process.env.PORT || 3000;
 
 const allowedOrigins = [
   "https://islanddays.in", // Replace with actual User UI domain
-  "https://admin.islanddays.in", // Replace with actual Admin UI domain
+  "https://admin.islanddays.in", 
+  "http://localhost:3000",
 ];
 
 app.use(cors({

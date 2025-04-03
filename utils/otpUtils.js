@@ -1,30 +1,6 @@
 // utils/otpUtils.js
 const nodemailer = require('nodemailer');
 
-const otpStorage = {};
-
-
-const generateOtp = () => Math.floor(100000 + Math.random() * 900000);
-
-const storeOtp = (email, otp) => {
-  otpStorage[email] = { otp, expiresAt: Date.now() + 5 * 60 * 1000 };
-  console.log(otpStorage,"store otp storage")
-};
-
-
-
-const verifyStoredOtp = (email, otp) => {
-  console.log(otp,email,"otp")
-  if (!otpStorage[email]) return false;
-  const { otp: storedOtp, expiresAt } = otpStorage[email];
-  if (Date.now() > expiresAt) {
-      delete otpStorage[email]; // Remove expired OTP
-      return false;
-  }
-  return storedOtp === otp;
-};
-
-
 const sendOtp = async (email, otp) => {
   console.log(process.env.EMAIL_USER,  process.env.EMAIL_PASS)
   const transporter = nodemailer.createTransport({
@@ -60,4 +36,4 @@ const sendOtp = async (email, otp) => {
 
 
 
-module.exports = { generateOtp, sendOtp, storeOtp, verifyStoredOtp };
+module.exports = { sendOtp};

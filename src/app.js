@@ -12,22 +12,15 @@ dotenv.config(); // Load environment variables
 const app = express();
 const port = process.env.PORT || 3000;
 
-const allowedOrigins = [
-  "https://islanddays.in", // Replace with actual User UI domain
-  "https://admin.islanddays.in", 
-  "http://localhost:3000",
-];
-
 app.use(cors({
-  origin: function (origin, callback) {
-    if (!origin || allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      callback(new Error("Not allowed by CORS"));
-    }
-  },
-  credentials: true, // If using cookies or authentication
+  origin: [
+    "https://islanddays.in",
+    "https://admin.islanddays.in",
+    "http://localhost:3000"
+  ],
+  credentials: true
 }));
+
 
 // ✅ Middleware
 app.use(cookieParser());

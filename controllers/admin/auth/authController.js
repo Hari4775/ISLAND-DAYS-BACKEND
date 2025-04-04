@@ -63,10 +63,12 @@ const verifyOtp = async (req, res) => {
         if (!isWhitelisted(email)) {
             return res.status(403).json({ message: "Access denied. Your email is not allowed." });
         }
+        console.log(otp,"otp input by user")
         const otpValue = otp.toString();  
+        console.log(otpValue,"otp value")
         // Fetch the most recent OTP record for this email
         const otpRecord = await OTP.findOne({ email }).sort({ createdAt: -1 });
-
+        console.log(otpRecord,"otp record")
         if (!otpRecord) {
             return res.status(400).json({ success: false, message: "Invalid or expired OTP" });
         }

@@ -2,8 +2,9 @@ const jwt = require('jsonwebtoken');
 const whiteList = require("../../../config/whiteList");
 const { sendOtp } = require('../../../utils/otpUtils');
 const OTP = require('../../../model/admin/OtpSchema');
-const jwtSecret = process.env.adminjwtKEY;
 const bcrypt = require("bcrypt");
+const jwtSecret = process.env.adminJWTkey; // Exact match
+
 
 const isWhitelisted = (email) => {
     return (

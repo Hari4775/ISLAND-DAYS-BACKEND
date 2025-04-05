@@ -12,11 +12,14 @@ dotenv.config(); // Load environment variables
 const app = express();
 const port = process.env.PORT || 3000;
 
+// ✅ Define allowed origins
 const allowedOrigins = [
-  "https://islanddays.in", // Replace with actual User UI domain
-  "https://admin.islanddays.in", 
+  "https://islanddays.in",
+  "https://admin.islanddays.in",
   "http://localhost:3000",
 ];
+
+// ✅ CORS Setup — Only this one!
 app.use(cors({
   origin: function (origin, callback) {
     if (!origin || allowedOrigins.includes(origin)) {
@@ -29,7 +32,15 @@ app.use(cors({
   credentials: true,
 }));
 
-// ✅ Middleware
+// ✅ Prevent browser and CDN caching
+app.use((req, res, next) => {
+  res.setHeader("Cache-Control", "no-store");
+  res.setHeader("Pragma", "no-cache");
+  res.setHeader("Expires", "0");
+  next();
+});
+
+// ✅ Middlewares
 app.use(cookieParser());
 app.use(express.json({ limit: "2gb" }));
 app.use(express.urlencoded({ limit: "2gb", extended: true }));
@@ -40,7 +51,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use("/api", userRoutes);
 app.use("/api/admin", adminAuthRoutes);
 
-// ✅ Database Connection & Server Start
+// ✅ Database Connection & Start Server
 connectDB()
   .then(() => {
     console.log("✅ Database connected on port", port);
@@ -52,7 +63,7 @@ connectDB()
     console.error("❌ Database connection failed:", err);
   });
 
-// ✅ Error Handling Middleware
+// ✅ Global Error Handler
 app.use((err, req, res, next) => {
   console.error("❌ Server Error:", err.message);
   res.status(500).json({ error: err.message });

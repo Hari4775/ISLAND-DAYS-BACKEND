@@ -12,14 +12,14 @@ dotenv.config(); // Load environment variables
 const app = express();
 const port = process.env.PORT || 3000;
 
-// ✅ Define allowed origins
+// ✅ Allowed frontend origins
 const allowedOrigins = [
   "https://islanddays.in",
   "https://admin.islanddays.in",
   "http://localhost:3000",
 ];
 
-// ✅ CORS Setup — Only this one!
+// ✅ CORS Configuration
 app.use(cors({
   origin: function (origin, callback) {
     if (!origin || allowedOrigins.includes(origin)) {
@@ -32,7 +32,7 @@ app.use(cors({
   credentials: true,
 }));
 
-// ✅ Prevent browser and CDN caching
+// ✅ Prevent browser and proxy caching
 app.use((req, res, next) => {
   res.setHeader("Cache-Control", "no-store");
   res.setHeader("Pragma", "no-cache");
@@ -40,21 +40,21 @@ app.use((req, res, next) => {
   next();
 });
 
-// ✅ Middlewares
+// ✅ Global Middlewares
 app.use(cookieParser());
 app.use(express.json({ limit: "2gb" }));
 app.use(express.urlencoded({ limit: "2gb", extended: true }));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// ✅ Routes
+// ✅ API Routes
 app.use("/api", userRoutes);
 app.use("/api/admin", adminAuthRoutes);
 
-// ✅ Database Connection & Start Server
+// ✅ DB Connection and Server Start
 connectDB()
   .then(() => {
-    console.log("✅ Database connected on port", port);
+    console.log("✅ Database connected");
     app.listen(port, () => {
       console.log(`🚀 Server running on port ${port}`);
     });

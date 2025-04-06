@@ -10,7 +10,7 @@ const fileUploadOptions={
 const categoryRouter = express.Router();
 categoryRouter.post("/", createCategory);
 categoryRouter.get("/:package_id",getAllCategories);
-categoryRouter.get("/:category_id",getCategory);
+categoryRouter.get("/single/:category_id",getCategory);
 categoryRouter.put("/:category_id",fileUpload(fileUploadOptions),updateCategory);
 categoryRouter.delete("/:category_id",deleteCategory);
 

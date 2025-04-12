@@ -29,6 +29,13 @@ const createCategory = async (req, res) => {
             return res.status(400).json({ message: "Required fields are missing" });
         }
 
+        const pkg= await Package.findOne({ package_id });
+        if(!pkg){
+            return res.status(404).json({message:"package not found  with the ID"})
+        }
+
+        const package_name = pkg.package_name;
+     
         const newCategory = await Category.create({
             package_id,
             package_name,

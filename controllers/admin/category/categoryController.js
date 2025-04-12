@@ -31,6 +31,7 @@ const createCategory = async (req, res) => {
 
         const newCategory = await Category.create({
             package_id,
+            package_name,
             categoryName,
             categoryDescription,
             categoryFeatures,

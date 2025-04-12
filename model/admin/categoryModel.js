@@ -6,6 +6,10 @@ const categorySchema = new mongoose.Schema({
           type:mongoose.Schema.Types.ObjectId, 
            ref: "Package",required:true
            },
+     package_name:{
+         type:String ,
+         ref: "Package",required:true
+           },
      category_id:{
           type:mongoose.Schema.Types.ObjectId,
           auto:true

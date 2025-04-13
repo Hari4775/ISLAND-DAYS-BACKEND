@@ -16,7 +16,6 @@ const bookingSchema = new mongoose.Schema({
   bookingDateTime: { type: String, required: true },
   bookingInfo: { type: Object, required: true },
   passengerDetails: { type: Object, required: true },
-  paymentStatus: { type: String, enum: ["not_paid", "paid"], default: "not_paid" },
   packageDetails: {
     name: { type: String, required: true },
     category: { type: String, required: true },

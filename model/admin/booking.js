@@ -11,9 +11,9 @@ const bookingSchema = new mongoose.Schema({
   packageDetails: {
     name: { type: String, required: true },
     category: { type: String, required: true },
-    startDate: { type: Date, required: true },
-    endDate: { type: Date, required: true },
-    adultCount: { type: Number, required: true },
+    startDate: { type: Date },
+    endDate: { type: Date},
+    adultCount: { type: Number,required:true},
     childCount: { type: Number, required: true },
     totalAmount: { type: Number, required: true },
   },

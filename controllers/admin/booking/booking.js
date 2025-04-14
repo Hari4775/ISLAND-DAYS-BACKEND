@@ -50,8 +50,8 @@ const createBooking = async (req, res) => {
     await newBooking.save();
 
     res.status(201).json({
-      message: "Booking created and submitted for verification.",
-      booking: newBooking
+      message: `Your booking has been successfully made! You can track your booking using the Booking ID: ${bookingNumber}. A confirmation email will be sent to ${bookingInfo.email}. Our admin team will verify your documents and update you soon.`,
+      bookingId: bookingNumber
     });
   } catch (error) {
     console.error("Create Booking Error:", error);

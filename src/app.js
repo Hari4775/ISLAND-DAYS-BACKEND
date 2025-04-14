@@ -3,7 +3,7 @@ const cookieParser = require("cookie-parser");
 const cors = require("cors");
 const dotenv = require("dotenv");
 const connectDB = require("../config/connectDB");
-const userRoutes = require("../routers/userRoutes/index");
+// const userRoutes = require("../routers/userRoutes/index");
 const adminAuthRoutes = require("../routers/adminRoutes");
 const bodyParser = require("body-parser");
 
@@ -48,7 +48,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // ✅ API Routes
-app.use("/api", userRoutes);
+// app.use("/api", userRoutes);
 app.use("/api/admin", adminAuthRoutes);
 
 // ✅ DB Connection and Server Start
